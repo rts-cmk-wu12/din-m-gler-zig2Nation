@@ -6,8 +6,9 @@ export default function InfoTekst() {
             {/* Første linje */}
             <div className="flex flex-row gap-8 max-w-3xl w-full justify-center">
                 <div className="flex flex-row items-start gap-4">
-                
-                    <Image src="/property.svg" alt="en svg af en ejendom" width={25} height={25} />
+                    <div className="w-[5em] h-[2em] bg-[#EEF7FF] flex items-center justify-center">
+                        <Image src="/property.svg" alt="en svg af en ejendom"  className="max-w-[1em]" width={25} height={25} />
+                    </div>
                     <article>
                         <h3 className="font-bold text-lg">Bestil et salgstjek</h3>
                         <p className="text-gray-600">
@@ -16,8 +17,8 @@ export default function InfoTekst() {
                     </article>
                 </div>
                 <div className="flex flex-row items-start gap-4">
-                    <div>
-                        <Image src="/maps-and-flags.svg" alt="en placerings flag" width={25} height={25} />
+                    <div className="w-[5em] h-[2em] bg-[#EEF7FF] flex items-center justify-center">
+                        <Image src="/maps-and-flags.svg" alt="en placerings flag" className="max-w-[1em]" width={25} height={25} />
                     </div>
                     <article>
                         <h3 className="font-bold text-lg">74 butikker</h3>
@@ -27,7 +28,9 @@ export default function InfoTekst() {
                     </article>
                 </div>
                 <div className="flex flex-row items-start gap-4">
-                    <Image src="/customer.svg" alt="en bruger figur" width={25} height={25} />
+                    <div className="w-[5em] h-[2em] bg-[#EEF7FF] flex items-center justify-center">
+                    <Image src="/customer.svg" alt="en bruger figur"  className="max-w-[1em]" width={25} height={25} />
+                    </div>
                     <article>
                         <h3 className="font-bold text-lg">Tilmeld køberkartotek</h3>
                         <p className="text-gray-600">

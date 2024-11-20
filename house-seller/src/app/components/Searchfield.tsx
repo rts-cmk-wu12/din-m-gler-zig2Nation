@@ -9,7 +9,6 @@ export default function Søgefelt() {
                     alt="baggrund på søgefelt af et hus"
                     layout="fill"
                     objectFit="cover"
-                    className="z-0 shadow-2xl"
                 />
                 <div className="relative z-10 bg-opacity-80 p-8 shadow-lg flex flex-col items-center text-center">
                     <h1 className="text-2xl font-bold mb-4 text-white">Søg efter din drømmebolig</h1>

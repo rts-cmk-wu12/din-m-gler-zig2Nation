@@ -5,7 +5,7 @@ import InfoTekst from "./InfoTekst"
 export default function DanskernesHjem() {
     return (
         <>
-            <section className="flex flex-col items-center w-full h-screen mt-[5em]">
+            <section className="flex flex-col items-center w-full h-screen mt-[5em] bg-[white]">
                 {/* Øverste indhold */}
                 <div className="flex flex-row items-center justify-between max-w-5xl w-full px-8 border-b border-gray-300 mx-auto gap-[3em]" style={{ maxWidth: "50%" }}>
                     <Image 
