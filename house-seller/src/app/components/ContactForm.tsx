@@ -3,7 +3,7 @@ import FastLinks from "./FastLinks";
 
 export default function ContactForm() {
   return (
-    <section className="flex flex-row gap-[10em] mt-[5em]">
+    <section className="flex flex-row gap-[10em] mt-[5em] w-[60em]">
       <div className="w-[23em] h-[20em] bg-white flex items-center justify-center flex-col">
         <ul className="flex flex-col justify-start items-start gap-4">
           <li className="flex flex-col items-start">

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 // Definerer type for boligdata
 interface Home {
@@ -14,6 +15,8 @@ interface Home {
   gross: number;
   energylabel: string;
   rooms: number;
+  livingspace: number;
+  
 }
 
 export default function SelectedHomes() {
@@ -42,10 +45,25 @@ export default function SelectedHomes() {
     fetchHomes();
   }, []);
 
+  const energyLabelClass = (label: string) => {
+    switch (label.toUpperCase()) {
+      case "A":
+        return "bg-green-400";
+      case "B":
+        return "bg-yellow-400";
+      case "C":
+        return "bg-orange-400";
+      case "D":
+        return "bg-red-400"; 
+      default:
+        return "bg-gray-200"; 
+    }
+  };
+
   return (
     <section className="bg-[#F8F8FB] flex flex-col items-center justify-center mt-[10em]">
       {/* Overskrift */}
-      <div className="flex flex-col items-center justify-center mt-20">
+      <div className="flex flex-col items-center justify-center gap-7 mb-[4em]">
         <h2 className="text-2xl font-bold">Udvalgte Boliger</h2>
         <div>
           <p className="w-[38em]">
@@ -58,7 +76,7 @@ export default function SelectedHomes() {
       {/* Grid med boliger */}
       <div className="grid grid-cols-2 grid-rows-2 gap-4">
         {homes.map((home) => (
-          <article key={home.id} className="p-4 bg-gray-100 shadow-md">
+          <article key={home.id} className="p-4 bg-white shadow-md">
             {/* Billede for boligen */}
             <img
               src={home.images[0]?.url} // Hent første billede fra images-arrayet
@@ -67,30 +85,43 @@ export default function SelectedHomes() {
             />
             {/* Bolig titel, sted og pris */}
             <article className="flex flex-col gap-2">
-                <h3 className="font-bold text-lg">{home.title}</h3>
-                <p className="text-gray-700 font-bold text-[0.5]">{home.adress1}</p>
-                <p className="text-[#333333]">{home.postalcode} {home.city}</p>
-                <div>
-                    <div className="flex gap-2">
-                        <p className="font-bold">{home.type}</p>
-                        <p>Ejerudgift: {home.gross}kr</p>
-                    </div>
-                    <div className="flex">
-                        <div>
-                            <p>{home.energylabel}</p>
-                            <p>{home.rooms}</p>
-                        </div>
-                        <p className="text-gray-700 mt-2">{home.price} DKK</p>
-                    </div>
+              <h3 className="font-bold text-lg">{home.title}</h3>
+              <p className="text-gray-700 font-bold text-[0.5]">{home.adress1}</p>
+              <p className="text-[#333333]">{home.postalcode} {home.city}</p>
+              <div>
+                <div className="flex gap-2">
+                  <p className="font-bold">{home.type}</p>
+                  <p>Ejerudgift: {home.gross}kr</p>
                 </div>
+                <div className="flex justify-between mt-3 items-center gap-32">
+                  <div className="flex flex-row items-center">
+                    {/* Energimærket */}
+                    <div
+                      className={`w-6 h-6 flex items-center justify-center text-white font-bold rounded ${energyLabelClass(
+                        home.energylabel
+                      )}`}
+                    >
+                      {home.energylabel}
+                    </div>
+                    <p className="ml-[1em]">{home.rooms} værelser</p>
+                    <p className="ml-[0.3em]">{home.livingspace}m²</p>
+                  </div>
+                  <p className="text-gray-700 font-semibold text-[1.2em]">{home.price.toLocaleString()}</p>
+                </div>
+              </div>
             </article>
           </article>
         ))}
       </div>
 
-      <button className="mt-6 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+      <Link
+        href="/houses"
+        className="mt-20 px-4 py-2 bg-[#162A41] text-white rounded w-[13em] h-14 flex items-center justify-center"
+      >
         Se alle boliger
-      </button>
+      </Link>
+
+
     </section>
   );
 }

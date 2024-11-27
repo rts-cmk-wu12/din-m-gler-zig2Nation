@@ -4,24 +4,27 @@ import { IoPerson } from "react-icons/io5";
 import Navigation from "./Navigation";
 
 export default function Header() {
-    return(
+    return (
         <header className="w-full flex flex-col">
-            <div className="w-full bg-[#162A41] h-[3em]">
-                <div className="flex items-center justify-evenly">
-                    <div className="flex gap-4">
-                        <HiOutlinePaperAirplane className="text-white"/>
-                        <h2 className="text-white">4000@dinmaegler.com</h2>
-
-                        <BsTelephone className="text-white"/>
-                        <p className="text-white">+45 7070 4000</p>
+            {/* Topbar */}
+            <div className="w-full bg-[#162A41] h-[3em] flex items-center justify-center">
+                <div className="max-w-4xl w-full flex justify-between px-8 text-white text-sm">
+                    {/* Venstre side */}
+                    <div className="flex items-center gap-4">
+                        <HiOutlinePaperAirplane />
+                        <span>4000@dinmaegler.com</span>
+                        <BsTelephone />
+                        <span>+45 7070 4000</span>
                     </div>
-                    <div className="flex">
-                        <IoPerson className="text-white"/>
-                        <h2 className="text-white">Log ind</h2>
+                    {/* Højre side */}
+                    <div className="flex items-center gap-2">
+                        <IoPerson />
+                        <span>Log ind</span>
                     </div>
                 </div>
             </div>
-            <Navigation/>
+            {/* Navigation */}
+            <Navigation />
         </header>
-    )
+    );
 }
