@@ -2,6 +2,7 @@ import { BsTelephone } from "react-icons/bs";
 import { HiOutlinePaperAirplane } from "react-icons/hi";
 import { IoPerson } from "react-icons/io5";
 import Navigation from "./Navigation";
+import Link from "next/link";
 
 export default function Header() {
     return (
@@ -19,7 +20,9 @@ export default function Header() {
                     {/* Højre side */}
                     <div className="flex items-center gap-2">
                         <IoPerson />
-                        <span>Log ind</span>
+                        <Link href={'/Login'}>
+                            <span>Log ind</span>
+                        </Link>
                     </div>
                 </div>
             </div>

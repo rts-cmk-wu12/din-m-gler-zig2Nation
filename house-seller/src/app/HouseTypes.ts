@@ -4,7 +4,10 @@ export interface Agent {
     title: string;
     phone: string;
     email: string;
-    image: string; // Antager at der er en URL til billede
+    description: string;
+    image: {
+      url: string;
+    } // Antager at der er en URL til billede
   }
   
   export interface Image {
@@ -28,13 +31,16 @@ export interface Agent {
     images: Image[];
     agent: Agent;
     gross: number;
+    netto: number;
     livingspace: number;
     lotsize: number;
     payment: number;
     rooms: string;
     lat: number;
     long: number;
-    build: number;
+    built: number;
     remodel: number;
+    basementsize:number;
+    cost: number;
   }
   

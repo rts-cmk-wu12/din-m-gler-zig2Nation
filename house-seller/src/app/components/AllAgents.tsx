@@ -14,7 +14,7 @@ export default function AllAgents() {
 
         {/* Tekst, der vises oven på billedet */}
         <article className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
-          <h2 className="text-5xl font-bold">Boliger til salg</h2>
+          <h2 className="text-5xl font-bold">Medarbejdere i Roskilde</h2>
         </article>
       </div>
     )
