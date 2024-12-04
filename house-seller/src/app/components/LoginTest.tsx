@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import { redirect } from 'next/navigation';
 import test from './test'; // Sørg for at importere korrekt
+import Link from 'next/link';
 
 export default function LoginTest() {
   const [formState, setFormState] = useState<{ success?: boolean } | null>(null);
@@ -28,7 +29,7 @@ export default function LoginTest() {
 
   return (
         <>
-        <div className="relative">
+        <div className="relative w-full h-[10em]">
             {/* Baggrundsbillede med mørk overlay */}
             <Image
               src="/Mask-Group.png"
@@ -48,16 +49,37 @@ export default function LoginTest() {
          </div>
        </article>
      </div>
-    <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center mt-32 min-h-[70vh] border border-indigo-600 w-[30em]">
-      <label htmlFor="identifier" className='flex flex-col'>Email
-        <input type="email" name="identifier" className=' border border-indigo-600 w-[20em]' required />
-      </label>
-      <span>{formState?.success?.toString()}</span>
-      <label htmlFor="password" className='flex flex-col'>Adgangskode
-        <input type="password" name="password" className=' border border-indigo-600 w-[20em]' required />
-      </label>
-      <button type="submit">Login</button>
-    </form>
+     <div>
+        <form onSubmit={handleSubmit} className="flex flex-col justify-center items-center mt-32 min-h-[70vh] border w-[40em] p-[4em] gap-4">
+          <label htmlFor="identifier" className='flex flex-col gap-2'>Email
+            <input type="email" name="identifier" placeholder='Email' className=' border border-[#D3DEE8] w-[30em] p-2' required />
+          </label>
+          <span>{formState?.success?.toString()}</span>
+          <label htmlFor="password" className='flex flex-col gap-2'>Adgangskode
+            <input type="password" name="password" placeholder='Password' className=' border border-[#D3DEE8] w-[30em] p-2' required />
+          </label>
+
+            <button
+                 type="submit"
+                 className="w-[30em] py-3 bg-[#162A41] text-white font-semibold hover:bg-blue-800"
+               >
+                 Log ind
+            </button>
+               <article className='w-[30em]'>
+               <p>Log in med</p>
+               <div className="mt-3 flex flex-row items-center justify-between w-full">
+                   <button className="w-[8em] h-11 bg-[#DD4B39] text-white">Google</button>
+                   <button className="w-[8em] h-11 bg-[#3B5999] text-white">Facebook</button>
+                   <button className="w-[8em] h-11 bg-[#162A41] text-white">Twitter</button>
+               </div>
+           </article>
+           
+           <p className="text-center mt-6">Har du ikke en bruger?</p>
+           <Link href={'/CreateAccount'}>
+            <button className="text-[#2F80ED]">Opret bruger</button>
+            </Link>
+        </form>
+    </div>
     </>
     )
 }
