@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from "react";
 import { IoIosMail } from "react-icons/io";
+import Link from "next/link";
 
 interface EmployeeData {
     id: string | number;
@@ -55,7 +56,9 @@ export default function AgentsArticle() {
                             alt={employee.name}
                             className="w-full h-[17em] object-cover mb-4"
                         />
-                        <h3 className="text-xl font-bold">{employee.name}</h3>
+                        <Link href={'/ContactAnEmployee'}>
+                            <h3 className="text-xl font-bold hover:underline underline-offset-4 cursor-pointer">{employee.name}</h3>
+                        </Link>
                         <p className="text-[#7B7B7B]">{employee.title}</p>
                         <div className="flex flex-row items-center gap-2 mb-3">
                             <IoIosMail />

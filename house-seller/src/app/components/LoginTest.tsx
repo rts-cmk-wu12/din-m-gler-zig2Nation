@@ -5,27 +5,7 @@ import { redirect } from 'next/navigation';
 import test from './test'; // Sørg for at importere korrekt
 import Link from 'next/link';
 
-export default function LoginTest() {
-  const [formState, setFormState] = useState<{ success?: boolean } | null>(null);
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const formData = new FormData(event.currentTarget);
-
-    try {
-      const result = await test(null, formData);
-      setFormState(result);
-
-      if (result.success) {
-        redirect('/houses'); 
-      } else {
-        alert('Fejl! Tjek dine loginoplysninger.');
-      }
-    } catch (error) {
-      console.error('Error during login:', error);
-      alert('Noget gik galt. Prøv igen senere.');
-    }
-  };
 
   return (
         <>
@@ -82,4 +62,4 @@ export default function LoginTest() {
     </div>
     </>
     )
-}
+

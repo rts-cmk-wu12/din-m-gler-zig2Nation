@@ -85,9 +85,16 @@ export default function SelectedHomes() {
             />
             {/* Bolig titel, sted og pris */}
             <article className="flex flex-col gap-2">
-              <h3 className="font-bold text-lg">{home.title}</h3>
-              <p className="text-gray-700 font-bold text-[0.5]">{home.adress1}</p>
-              <p className="text-[#333333]">{home.postalcode} {home.city}</p>
+            <Link href={`/house/${home.id}`}>
+                <h3 className="font-bold text-lg">{home.title}
+                  <p className="text-gray-700 font-bold text-[0.5] hover:underline">{home.adress1}
+                    
+                    
+                  </p>
+                </h3>
+              </Link>
+                <p className="text-[#333333]">{home.postalcode} {home.city}</p>
+
               <div>
                 <div className="flex gap-2">
                   <p className="font-bold">{home.type}</p>

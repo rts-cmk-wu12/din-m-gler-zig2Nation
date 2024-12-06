@@ -24,7 +24,7 @@ export default function Navigation() {
                     </li>
                     <li className="cursor-pointer hover:text-blue-500">Mine favoritter</li>
                     <li className="cursor-pointer hover:text-blue-500">
-                        <Link href='/ContactAnEmployee'>Kontakt os</Link>
+                        <Link href='/ContactUs'>Kontakt os</Link>
                     </li>
                 </ul>
             </div>

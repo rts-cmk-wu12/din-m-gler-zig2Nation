@@ -23,7 +23,7 @@ export default function CreateUser() {
        </article>
      </div>
         <div className="w-full flex items-center">
-            <form action="" className="flex flex-col items-center mt-32 min-h-[70vh] border w-[40em] p-[4em] gap-4 ml-[25%]">
+            <form action="" className="flex flex-col items-center mt-32 min-h-[70vh] border w-[40em] p-[4em] gap-4 ml-[25%] shadow-lg">
             <h2 className="font-semibold">Opret bruger hos Din Mægler</h2>
                 <label htmlFor="" className='flex flex-col gap-2'>
                     Fulde navn

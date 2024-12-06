@@ -75,7 +75,7 @@ export default function Employee() {
                 ))}
             </article>
             <Link
-              href="/houses"
+              href="/agents"
               className="mt-20 px-4 py-2 bg-[#162A41] text-white rounded w-[13em] h-14 flex items-center justify-center"
             >
               Se alle mæglere

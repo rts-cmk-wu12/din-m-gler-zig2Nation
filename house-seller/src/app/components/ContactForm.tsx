@@ -42,7 +42,3 @@ export default function ContactForm() {
     </section>
   );
 }
-
-
-//src="/paiperplane.svg" alt="papirsfly til og send en mail"
-// src="/locationdot.svg" alt="locations prik"
