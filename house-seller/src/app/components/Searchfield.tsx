@@ -27,7 +27,7 @@ export default function Søgefelt() {
                                         placeholder="Søg på fx. glaskeramisk komfur, bryggers, kælder eller lignende"
                                         className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     />
-                                        <button className="bg-[#162A41] text-white w-[20%]">Søg</button>
+                                        <button className="bg-[#162A41] text-white w-[20%]" >Søg</button>
                                 </label>
                             </form>
                         </article>

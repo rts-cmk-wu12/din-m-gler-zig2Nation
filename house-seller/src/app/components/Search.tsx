@@ -1,6 +1,6 @@
 'use client';
 import { IoMdArrowDropdown } from "react-icons/io";
-import { CiHeart } from "react-icons/ci";
+import { FaHeart } from "react-icons/fa6";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -26,6 +26,7 @@ export default function Search() {
   const [homes, setHomes] = useState<PriceData[]>([]); // Viser filtrerede boliger
   const [allHomes, setAllHomes] = useState<PriceData[]>([]); // Gemmer alle boliger
   const [selectedPropertyType, setSelectedPropertyType] = useState<string | null>(null); // Valgt ejendomstype
+  const [favorites, setFavorites] = useState<Record<string, boolean>>({});
   const [showDropdown, setShowDropdown] = useState(false); // Dropdown-tilstand
   const router = useRouter();
 
@@ -49,8 +50,15 @@ export default function Search() {
       .catch((err) => {
         console.error("Fetch error:", err);
       });
-  };
+    }
 
+    
+    const toggleFavorite = (id: string | number) => {
+      setFavorites((prevFavorites) => ({
+        ...prevFavorites,
+        [id]: !prevFavorites[id], // Skift status for det specifikke id
+      }));
+    };
   // Filtrér boliger baseret på pris og ejendomstype
   const filterHomes = () => {
     const filtered = allHomes.filter(
@@ -166,9 +174,20 @@ export default function Search() {
                       src={home.images[0]?.url} // Hent første billede fra images-arrayet
                       alt={home.title}
                       className="w-full h-48 object-cover mb-4 rounded"
+
                     />
-                    <div className="absolute top-3 right-3 bg-gray-200 rounded-full p-2">
-                      <CiHeart className="text-gray-10000 w-6 h-6" />
+                    <div
+                      className="absolute top-3 right-3 bg-white rounded-full p-2 cursor-pointer"
+                      onClick={(e) => {
+                        e.stopPropagation(); // Forhindrer klik på hjertet i at trigge navigation
+                        toggleFavorite(home.id);
+                      }}
+                    >
+                      <FaHeart
+                        className={`w-6 h-6 ${
+                          favorites[home.id] ? "text-red-500" : "text-gray-500"
+                        }`}
+                      />
                     </div>
                   </div>
                   <h2 className="text-gray-700 font-bold text-[0.5] mt-4">

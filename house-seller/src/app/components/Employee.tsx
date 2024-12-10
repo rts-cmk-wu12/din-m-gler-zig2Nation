@@ -65,7 +65,9 @@ export default function Employee() {
                             alt={employee.name}
                             className="w-full h-[17em] object-cover mb-4"
                         />
-                        <h3 className="text-xl font-bold">{employee.name}</h3>
+                        <h3 className="text-xl font-bold">
+                            <Link href={`/ContactAnEmployee/${employee.id}`}>{employee.name}</Link>
+                        </h3>
                         <p className="text-[#7B7B7B]">{employee.title}</p>
                         <div className="flex flex-row items-center gap-2 mb-3">
                             <IoIosMail />

@@ -23,20 +23,29 @@ export default function ContactUs() {
                   <h2 className="text-5xl font-bold">Kontakt os</h2>
                 </article>
             </div>
-        <section className="flex flex-col items-center w-[100%]">
-
-            <div className="flex flex-row items-center justify-center mt-40 w-[60em] gap-4">
-                <div className="flex flex-col items-center justify-center gap-9">
-                    <InfoTexst/>
-                    <SendMessege/>
-                </div>
-                <section className="flex flex-col items-center border border-[#D3DEE8] h-full">
-                    <Call/>
-                    <SendEmail/>
-                    <ShopLocation/>
-                </section>
+            <section className="flex flex-col items-center w-[100%]">
+    <div className="flex flex-col items-center justify-center mt-40 w-full gap-4">
+        <div className="flex flex-col items-center justify-center gap-9">
+            <InfoTexst/>
+        </div>
+        <section className="flex flex-row items-center h-full gap-7"> {/* gap-4 tilføjer mellemrum mellem elementerne */}
+            <SendMessege />
+            <div className="flex flex-col items-center w-[30em] h-[41em] gap-16 border border-[#D3DEE8] p-7">
+                <Call/>
+                <SendEmail/>
+                <ShopLocation/>
             </div>
         </section>
+        <div className="w-full mt-24">
+            <Image src='/Map.png'
+            alt="et map billede af vores placering"
+            height={500}
+            width={500}
+            className="w-full object-fill"/>
+        </div>
+    </div>
+</section>
+
         </>
     )
 }

@@ -56,7 +56,7 @@ export default function AgentsArticle() {
                             alt={employee.name}
                             className="w-full h-[17em] object-cover mb-4"
                         />
-                        <Link href={'/ContactAnEmployee'}>
+                        <Link href={`/ContactAnEmployee/${employee.id}`}>
                             <h3 className="text-xl font-bold hover:underline underline-offset-4 cursor-pointer">{employee.name}</h3>
                         </Link>
                         <p className="text-[#7B7B7B]">{employee.title}</p>

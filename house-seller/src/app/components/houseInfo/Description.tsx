@@ -25,7 +25,7 @@ export default function Description({ description, agent }: DescriptionProps) {
                   alt={`Billede af ${agent.name}`}
                   width={500} // Angiv passende bredde
                   height={500} // Angiv passende højde
-                  className='h-[15em]'
+                  className='h-[15em] object-cover'
                 />
             </div>
           ) : (

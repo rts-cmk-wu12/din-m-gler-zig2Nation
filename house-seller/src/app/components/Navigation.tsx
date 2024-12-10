@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Navigation() {
     return (
         <nav className="w-full bg-white shadow-md">
-            <div className="max-w-4xl w-full flex justify-between items-center h-[5em] mx-auto px-8">
+            <div className="w-[60em] flex justify-between items-center h-[5em] mx-auto">
                 {/* Logo */}
                 <Link href={'/'}>
                 <Image
@@ -22,7 +22,9 @@ export default function Navigation() {
                     <li className="cursor-pointer hover:text-blue-500">
                         <Link href='/agents'>Mæglere</Link>
                     </li>
-                    <li className="cursor-pointer hover:text-blue-500">Mine favoritter</li>
+                    <li className="cursor-pointer hover:text-blue-500">
+                        <Link href='/MineFavorites'>Mine favoritter</Link>
+                    </li>
                     <li className="cursor-pointer hover:text-blue-500">
                         <Link href='/ContactUs'>Kontakt os</Link>
                     </li>
