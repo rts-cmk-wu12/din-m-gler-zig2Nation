@@ -54,11 +54,21 @@ export default function Search() {
 
     
     const toggleFavorite = (id: string | number) => {
-      setFavorites((prevFavorites) => ({
-        ...prevFavorites,
-        [id]: !prevFavorites[id], // Skift status for det specifikke id
-      }));
+      setFavorites((prevFavorites) => {
+        const newFavorites = { ...prevFavorites, [id]: !prevFavorites[id] }; // Skift status
+        // Gem i localStorage
+        localStorage.setItem("favorites", JSON.stringify(newFavorites));
+        return newFavorites;
+      });
     };
+
+
+    useEffect(() => {
+      const storedFavorites = localStorage.getItem("favorites");
+      if (storedFavorites) {
+        setFavorites(JSON.parse(storedFavorites)); // Hent favoritter fra localStorage
+      }
+    }, []);
   // Filtrér boliger baseret på pris og ejendomstype
   const filterHomes = () => {
     const filtered = allHomes.filter(
@@ -93,11 +103,11 @@ export default function Search() {
   };
 
   return (
-    <section className="mt-[7em] w-[60em]">
+    <section className="mt-[7em] w-[60em] mb-20">
       {/* Søgeoverskrift */}
       <div className="flex gap-1 font-bold text-2xl">
         <p className="border-b-4 border-black">Søg</p>
-        <h5> efter dit drømmehus</h5>
+        <h3> efter dit drømmehus</h3>
       </div>
 
       {/* Pris Slider og Ejendomstype */}
@@ -198,7 +208,7 @@ export default function Search() {
                   </p>
                   <div className="flex gap-2 mt-4">
                     <p className="font-bold">{home.type}</p>
-                    <p>Ejerudgift: {home.gross}kr</p>
+                    <p>Ejerudgift: {home.gross.toLocaleString()}kr</p>
                   </div>
                   <div className="flex justify-between mt-3 items-center gap-32 border-t-2 border-[#D3DEE8]">
                     <div className="mt-5 flex flex-row items-center justify-between w-full">

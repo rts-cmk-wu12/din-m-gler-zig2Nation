@@ -39,7 +39,7 @@ export default function Page() {
 			  </article>
 			</div>
 
-			<div className='flex justify-center'>
+			<div className='flex justify-center mb-20'>
 			  <form action={formAction} className="flex flex-col justify-center items-center mt-32 min-h-[70vh] border w-[40em] p-[4em] gap-4 shadow-lg">
 			    <label htmlFor="identifier" className="flex flex-col gap-2">
 			      Email

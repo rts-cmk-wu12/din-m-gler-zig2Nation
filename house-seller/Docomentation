@@ -1,0 +1,96 @@
+* Mine valg af tech-stack
+ -Next.js
+    Jeg har valgt at bruge Next.js som mit framework, da det er et React-baseret framework, der tilbyder moderne funktioner som:
+
+    Server-side rendering (SSR): Dynamiske sider gengives på serveren, hvilket forbedrer både SEO og performance.
+    Static site generation (SSG): Statiske sider bygges ved build-tid, hvilket gør dem hurtige og cachebare. SSR og SSG øger også   SEO-optimeringen ved at sikre bedre håndtering af meta-tags.
+
+    API Routes: Next.js gør det muligt at bygge en backend direkte i projektet uden behov for et separat serverframework.
+
+    Andre fordele ved Next.js inkluderer:
+
+    Billedoptimering: Next.js leverer billedhåndtering via next/image, som optimerer størrelsen og kvaliteten af billeder i mit projekt.
+
+    Code splitting: Loader kun det nødvendige JavaScript for den pågældende side, hvilket reducerer loading-tiden.
+
+    Forudindlæsning af links: Navigationen føles hurtigere, da Next.js automatisk forudindlæser sider, du linker til.
+
+    Jeg valgte Next.js, fordi jeg allerede kendte React, og Next.js føltes som en naturlig udvidelse med moderne funktioner. Det er et fleksibelt   framework, der håndterer både frontend og backend og optimerer SEO, hvilket er vigtigt for mit projekt.
+
+    -TypeScript
+    TypeScript er et statisk typet superset af JavaScript, som jeg har valgt at bruge af følgende grunde:
+
+    Fejlretning: TypeScript hjælper med at opdage fejl, mens jeg skriver koden, i stedet for først når jeg kører projektet. Det sparer tid og gør   debugging lettere.
+
+    Typer: TypeScript kræver, at man angiver datatyper, hvilket gør det lettere for kolleger at forstå koden og finde rundt i projektet sågar   også for mig selv.
+
+    Robusthed og samarbejde: Ved at bruge TypeScript reducerer jeg sandsynligheden for bugs og gør koden mere overskuelig og    vedligeholdelsesvenlig.
+
+    Jeg valgte TypeScript for dets robusthed og muligheden for at arbejde mere effektivt i teams.
+
+
+
+    -Tailwind CSS
+    Jeg har valgt Tailwind CSS som mit styling-framework, fordi det giver fuld kontrol over designet uden at være låst til foruddefinerede  komponenter, som man ofte er i frameworks som Bootstrap.
+
+    Utility-first design: Med Tailwind CSS kan jeg skrive præcise og hurtige styles direkte i mit JSX. Det fjerner behovet for lange CSS-filer.
+
+    Konfigurerbarhed: Tailwind genererer en tailwind.config.js-fil, hvor jeg kan definere globale regler for farver, typografi og spacing. Det  sikrer et ensartet design på tværs af projektet.
+
+    Responsivt design: Tailwind gør det nemt at håndtere forskellige skærmstørrelser direkte med klasser som:
+    html
+
+    <div class="text-lg sm:text-xl lg:text-2xl"></div>
+    Her ændres tekststørrelsen baseret på skærmbredden, uden behov for komplekse media queries.
+
+    Eksempel på en typisk media query, som Tailwind gør overflødig:
+
+
+    @media only screen and (max-width: 600px) {
+      body {
+        background-color: lightblue;
+      }
+    }
+
+    Jeg valgte Tailwind CSS, fordi det er hurtigt at lære, giver fuld frihed til at designe uden begrænsninger og gør det nemt at skabe     responsivt design.
+
+
+
+* Perspektivering
+
+    -React alene
+    react er populeært men det mangler de avnacerede funktioner som sever-side rendering(SSR)
+    react mangler også billed optimering
+    react skal man også react-router hvor man konfigurer webpack manuelt
+
+    så jeg har valgt og bruge Next.js for fleksibelt (SEO) optimering. Den minder også om react bare lige en tak mere opdateret til den nyere verden så jeg vil sige Next.js er god til både store og små projekter
+
+
+    -JavaScript
+    jeg valgt og bruge TypeScript istedet for JavaScript da jeg bedere kan lig TypeScripts statiske typer så hvis jeg får fejl holder TypeScript øje og fortæller mig der er en fejl med det samme. JavaScript har støre chance for og lade et par fejl gå igennem som øger muligheden for bugs
+
+    -Bootstrap
+    bootestarp har allerede lavet designet for dig så man er hurtigt igang men det bliver meget ensformet design, hvormod TailWind CSS giver dig mulighed for at style selv så det ikke bliver for ensformit, TailWind CSS gør det nemmere og lave præcise og responsivt tilpassede designs, og giver dig fri mulighed
+
+
+
+* Diverse sider jeg har brugt igennem min opgave
+
+    -Links
+
+    dette link er til tailwind css som jeg har brugt til hjælp af styling
+    https://tailwindcss.com/
+
+    dette link er brugt i forhold til alle iconer som pile, telefoner, login og ud personen og Email
+    https://react-icons.github.io/react-icons/
+
+    dette link er for jeg kunne finde ud af og lave regex til en formvalidering
+    https://uibakery.io/regex-library/email
+
+    dette link er til noget nyt jeg er introducret til som er zod formvalidering
+    https://canopas.com/next-js-how-to-validate-forms-on-the-server-side-using-zod
+
+    dette link er for jeg kunne læse lidt omkring interface og typer
+    https://www.w3schools.com/typescript/typescript_aliases_and_interfaces.php
+
+    jeg har også brugt nogle ting fra min tidligere opgaver jeg har lavet

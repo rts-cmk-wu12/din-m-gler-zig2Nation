@@ -1,5 +1,4 @@
 "use server"
-import { cookies } from "next/headers";
 import { z } from "zod";
 
 export default async function test(state: any, formData: FormData) {
@@ -38,12 +37,14 @@ export default async function test(state: any, formData: FormData) {
     return { success: false };
   }
 
-   // Store cookies using the response object
-   const cookieStore = cookies();
-
-   // Set cookies - make sure the cookies API works in this context
-   cookieStore.set('dm_token', data.jwt, { path: '/' }); 
-   cookieStore.set('dm_userid', data.user.id, { path: '/' });
-
-  return { success: true };
+  // Return response with cookies
+  return new Response(JSON.stringify({ success: true }), {
+    headers: {
+      'Set-Cookie': [
+        `dm_token=${data.jwt}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+        `dm_userid=${data.user.id}; Path=/; HttpOnly; Secure; SameSite=Strict`,
+      ].join(', '), // Combine multiple cookies into one header if necessary
+      'Content-Type': 'application/json',
+    },
+  });
 }

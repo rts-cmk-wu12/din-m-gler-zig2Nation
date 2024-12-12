@@ -61,6 +61,7 @@ export default function Letter() {
                                     placeholder="Indtast din email adresse"
                                 />
                                 <button type="submit" className="w-10 h-6 text-black">
+                                    <span className="sr-only">få gokendt din email så du kan blive tilmeldt vores nyhedsbrev</span>
                                     <FaArrowRightLong />
                                 </button>
                             </div>

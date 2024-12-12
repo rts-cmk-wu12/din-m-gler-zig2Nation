@@ -37,7 +37,7 @@ export default function AllDetails({ id }: { id: string }) {
       <div className="flex flex-col items-center justify-center w-[60em]">
         <section className="flex flex-row items-center justify-between w-full mt-7">
           <Adress adress1={houseData.adress1} postalcode={houseData.postalcode} city={houseData.city}/>
-          <SvgBox images={houseData.images} floorplan={houseData.floorplan} />
+          <SvgBox images={houseData.images} floorplan={houseData.floorplan} coordinates={houseData.coordinates}/>
           <Price price={houseData.price} />
         </section>
         <div className="w-full border-t-2 border-[#D3DEE8] mt-7">

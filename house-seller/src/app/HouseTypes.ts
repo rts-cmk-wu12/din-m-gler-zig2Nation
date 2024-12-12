@@ -42,5 +42,10 @@ export interface Agent {
     remodel: number;
     basementsize:number;
     cost: number;
+    coordinates?: {
+      lat: number;
+      lng: number;
+    };
   }
+
   

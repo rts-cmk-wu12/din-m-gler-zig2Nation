@@ -2,12 +2,14 @@ import { CiSearch } from "react-icons/ci";
 export default function SearchProperty() {
     return(
         <section>
-            <form action="" className="bg-[#EEF7FF] w-[18em] h-[7em] p-[1em]">
-                <div className="border-b-2 border-[#D3DEE8] h-10">
-                    <h2 className="font-semibold">Search Property</h2>
+            <div className="bg-[#EEF7FF] flex items-center p-[1em]">
+                <div className="border-b-2 border-[#D3DEE8] h-10  w-full flex items-center">
+                        <h2 className="font-semibold">Search Property</h2>
                 </div>
+            </div>
+            <form action="" className="bg-[#EEF7FF] w-[18em] h-[7em] p-[1em]">
                 <label htmlFor="" className="flex flex-row mt-[1em]">
-                <CiSearch className="text-[#7B7B7B]"/>
+                    <CiSearch className="text-[#7B7B7B]"/>
                     <input type="text" placeholder="Search" className="w-full border border-white"/>
                 </label>
             </form>

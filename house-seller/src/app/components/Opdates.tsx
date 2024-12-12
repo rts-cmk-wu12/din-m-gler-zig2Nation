@@ -12,8 +12,8 @@ export default function Opdates(){
                     </div>
                     <p className="text-white leading-loose">Når du sælger din bolig hos Din Mægler, kommunikerer du nemt med den ansvarlige mægler eller butik med vores app. Her kan du også se statistik på interessen for din bolig i alle vores salgskanaler.</p>
                     <div className="flex flex-row mt-8 gap-5">
-                        <button className="w-[10em] h-[3em] rounded bg-white flex items-center justify-center gap-4"><PiGooglePlayLogoFill />Google Play</button>
-                        <button className="w-[10em] h-[3em] text-white flex items-center justify-center gap-4 border border-white rounded"><FaApple className="text-white"/>Apple Store</button>
+                        <button className="w-[10em] h-[3em] rounded bg-white flex items-center justify-center gap-4" aria-label="Google Play"><PiGooglePlayLogoFill/><span className="sr-only">gå til Google Play</span>Google Play</button>
+                        <button className="w-[10em] h-[3em] text-white flex items-center justify-center gap-4 border border-white rounded" aria-label="Apple Store"><FaApple className="text-white"/><span className="sr-only">apple logo til og gå til apple store</span>Apple Store</button>
                     </div>
 
                 </article>

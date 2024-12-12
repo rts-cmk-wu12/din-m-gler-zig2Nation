@@ -1,5 +1,5 @@
 import Image from "next/image"
-import FastLinks from "../FastLinks"
+import FastLinks from "../Footer/QuikLinks"
 export default function Call() {
     return(
         <div className="h-[8em] border-b-2 border-[#D3DEE8] w-[90%] flex items-center justify-center">

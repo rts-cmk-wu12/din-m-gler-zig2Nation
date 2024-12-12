@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react";
 import { IoIosMail } from "react-icons/io";
 import Link from "next/link";
@@ -9,7 +10,7 @@ interface EmployeeData {
     image: { url: string };
 }
 
-export default function Employee() {
+export default function AllBrokers() {
     const [employees, setEmployees] = useState<EmployeeData[]>([]);
     const [loading, setLoading] = useState(true); // Start med loading som true
     const [error, setError] = useState<string | null>(null);
@@ -18,7 +19,7 @@ export default function Employee() {
         const fetchThreeEmployees = async () => {
             try {
                 // Set loading to true before making the request
-                const response = await fetch("https://dinmaegler.onrender.com/agents?_limit=3", {
+                const response = await fetch("https://dinmaegler.onrender.com/agents", {
                     method: "GET",
                 });
 
@@ -41,16 +42,6 @@ export default function Employee() {
 
     return (
         <section className="flex flex-col items-center justify-center mt-32">
-            <article className="flex flex-col items-center justify-center gap-8">
-                <h2 className="text-[#263048] font-bold text-[2em]">
-                    Mød vores engagerede medarbejdere
-                </h2>
-                <p className="w-[33em] text-center">
-                    Din Mægler er garant for altid veluddannet assistance i dit boligsalg. Kontakt en af vores
-                    medarbejdere.
-                </p>
-            </article>
-
             {loading && <p>Loading...</p>} {/* Show loading message while fetching */}
             {error && <p className="text-red-500">Error: {error}</p>} {/* Show error message if there's an error */}
 
@@ -65,9 +56,9 @@ export default function Employee() {
                             alt={employee.name}
                             className="w-full h-[17em] object-cover mb-4"
                         />
-                        <h3 className="text-xl font-bold">
-                            <Link href={`/ContactAnEmployee/${employee.id}`}>{employee.name}</Link>
-                        </h3>
+                        <Link href={`/ContactAnEmployee/${employee.id}`}>
+                            <h3 className="text-xl font-bold hover:underline underline-offset-4 cursor-pointer">{employee.name}</h3>
+                        </Link>
                         <p className="text-[#7B7B7B]">{employee.title}</p>
                         <div className="flex flex-row items-center gap-2 mb-3">
                             <IoIosMail />
@@ -76,13 +67,6 @@ export default function Employee() {
                     </div>
                 ))}
             </article>
-            <Link
-              href="/agents"
-              className="mt-20 px-4 py-2 bg-[#162A41] text-white rounded w-[13em] h-14 flex items-center justify-center"
-            >
-              Se alle mæglere
-            </Link>
-
         </section>
     );
 }

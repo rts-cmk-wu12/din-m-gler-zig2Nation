@@ -1,9 +1,9 @@
 import Image from "next/image"
-import InfoTexst from "../components/ContactUsTexst/InfoTexst"
-import SendMessege from "../components/ContactUsTexst/SendMessege"
-import Call from "../components/ContactUsTexst/Call"
-import SendEmail from "../components/ContactUsTexst/SendEmail"
-import ShopLocation from "../components/ContactUsTexst/ShopLocation"
+import InfoTexst from "../components/Question.tsx/InfoTexst"
+import SendMessege from "../components/Question.tsx/SendMessege"
+import Call from "../components/Question.tsx/Call"
+import SendEmail from "../components/Question.tsx/SendEmail"
+import ShopLocation from "../components/Question.tsx/ShopLocation"
 export default function ContactUs() {
     return(
         <>
@@ -24,27 +24,27 @@ export default function ContactUs() {
                 </article>
             </div>
             <section className="flex flex-col items-center w-[100%]">
-    <div className="flex flex-col items-center justify-center mt-40 w-full gap-4">
-        <div className="flex flex-col items-center justify-center gap-9">
-            <InfoTexst/>
-        </div>
-        <section className="flex flex-row items-center h-full gap-7"> {/* gap-4 tilføjer mellemrum mellem elementerne */}
-            <SendMessege />
-            <div className="flex flex-col items-center w-[30em] h-[41em] gap-16 border border-[#D3DEE8] p-7">
-                <Call/>
-                <SendEmail/>
-                <ShopLocation/>
-            </div>
-        </section>
-        <div className="w-full mt-24">
-            <Image src='/Map.png'
-            alt="et map billede af vores placering"
-            height={500}
-            width={500}
-            className="w-full object-fill"/>
-        </div>
-    </div>
-</section>
+                <div className="flex flex-col items-center justify-center mt-40 w-full gap-4">
+                    <div className="flex flex-col items-center justify-center gap-9 w-[60em]">
+                        <InfoTexst/>
+                    </div>
+                    <section className="flex flex-row items-start h-full gap-7 w-[60em]"> {/* gap-4 tilføjer mellemrum mellem elementerne */}
+                        <SendMessege />
+                        <div className="flex flex-col items-center w-[30em] h-[43em] gap-16 border border-[#D3DEE8] p-7">
+                            <Call/>
+                            <SendEmail/>
+                            <ShopLocation/>
+                        </div>
+                    </section>
+                    <div className="w-full mt-24">
+                        <Image src='/Map.png'
+                        alt="et map billede af vores placering"
+                        height={500}
+                        width={500}
+                        className="w-full object-fill"/>
+                    </div>
+                </div>
+            </section>
 
         </>
     )

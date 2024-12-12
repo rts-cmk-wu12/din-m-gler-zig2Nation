@@ -1,25 +1,7 @@
 'use client';
-import { useState, useEffect } from "react";
+import { useState, FormEvent } from "react";
 
-interface Agent {
-    id: string;
-    name: string;
-    title: string;
-    phone: string;
-    email: string;
-    description: string;
-    image: { url: string };
-}
-
-interface ContactFormEmployeeProps {
-    agentId: string; // Agentens id for at finde den korrekte agent
-}
-
-export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProps) {
-    const [agentName, setAgentName] = useState<string | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [submissionMessage, setSubmissionMessage] = useState<string | null>(null)
-
+export default function SendMessege() {
     const [formData, setFormData] = useState({
         name: "",    
         email: "",   
@@ -34,26 +16,7 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
         message: "",
     });
 
-    useEffect(() => {
-        fetch("https://dinmaegler.onrender.com/agents", {
-            method: "GET",
-        })
-            .then((response) => response.json())
-            .then((data: Agent[]) => {
-                const agent = data.find((agent) => agent.id === agentId);
-                if (agent) {
-                    setAgentName(agent.name);
-                } else {
-                    setAgentName("Ingen navn på denne sælger");
-                }
-                setLoading(false);
-            })
-            .catch((err) => {
-                console.error("Fejl ved hentning af agenter:", err);
-                setAgentName("Fejl ved indlæsning");
-                setLoading(false);
-            });
-    }, [agentId]);
+    const [submissionMessage, setSubmissionMessage] = useState<string | null>(null);
 
     const validateForm = () => {
         let valid = true;
@@ -84,7 +47,7 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
         return valid;
     };
 
-    const handleSubmit = (event: React.FormEvent) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
     
         if (validateForm()) {
@@ -111,17 +74,8 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
         setFormData({ ...formData, [name]: value });
     };
 
-    if (loading) {
-        return <p>Indlæser...</p>;
-    }
-
     return (
         <form onSubmit={handleSubmit} className="flex flex-col p-[2em] w-full border border-[#D3DEE8] gap-8">
-            <div className="flex flex-row gap-2">
-                <h2 className="font-semibold text-xl border-b-4 border-black">Kontakt</h2>
-                <h3 className="font-semibold text-xl">{agentName}</h3>
-            </div>
-
             <div className="flex flex-row gap-4">
                 <label className="flex flex-col gap-3">
                     Navn
@@ -129,7 +83,7 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
                         type="text"
                         name="name"
                         placeholder="Indtast navn"
-                        value={formData.name || ''}
+                        value={formData.name}
                         onChange={handleChange}
                         className="border border-[#D3DEE8] p-2"
                     />
@@ -139,10 +93,10 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
                 <label className="flex flex-col gap-3 w-[12em]">
                     Email
                     <input
-                        type="text"
+                        type="email"
                         name="email"
                         placeholder="Indtast email"
-                        value={formData.email || ''}
+                        value={formData.email}
                         onChange={handleChange}
                         className="border border-[#D3DEE8] p-2"
                     />
@@ -156,7 +110,7 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
                     type="text"
                     name="subject"
                     placeholder="Hvad drejer din henvendelse sig om?"
-                    value={formData.subject || ''}
+                    value={formData.subject}
                     onChange={handleChange}
                     className="border border-[#D3DEE8] p-2 w-full"
                 />
@@ -168,11 +122,15 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
                 <textarea
                     name="message"
                     placeholder="Skriv din besked her..."
-                    value={formData.message || ''}
+                    value={formData.message}
                     onChange={handleChange}
                     className="border border-[#D3DEE8] w-full h-[14em] p-2"
                 />
                 {errors.message && <span className="text-red-500">{errors.message}</span>}
+            </label>
+            <label htmlFor="" className="flex flex-row gap-2">
+                <input type="Checkbox" className="text-[#D3DEE8] w-5" />
+                <p>Ja tak, jeg vil gerne modtage Din Mæglers nyhedsbrev.</p>
             </label>
 
             <button
@@ -181,6 +139,8 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
             >
                 Send Besked
             </button>
+
+            {submissionMessage && <p className="text-green-500">{submissionMessage}</p>}
         </form>
     );
 }

@@ -22,9 +22,9 @@ export default function CreateUser() {
          </div>
        </article>
      </div>
-        <div className="w-full flex items-center">
-            <form action="" className="flex flex-col items-center mt-32 min-h-[70vh] border w-[40em] p-[4em] gap-4 ml-[25%] shadow-lg">
-            <h2 className="font-semibold">Opret bruger hos Din Mægler</h2>
+        <div className="w-full flex items-center mb-20">
+            <form action="" className="flex flex-col items-center mt-32 min-h-[70vh] border w-[40em] p-[4em] gap-4 ml-[28%] shadow-lg">
+              <h2 className="font-semibold">Opret bruger hos Din Mægler</h2>
                 <label htmlFor="" className='flex flex-col gap-2'>
                     Fulde navn
                     <input type="text" placeholder="Fulde navn" className=' border border-[#D3DEE8] w-[30em] p-2'/>
@@ -41,12 +41,12 @@ export default function CreateUser() {
                     Bekræft password
                     <input type="text" placeholder="Bekræft password" className=' border border-[#D3DEE8] w-[30em] p-2'/>
                 </label>
-                <button
+              <button
                  type="submit"
                  className="w-[30em] py-3 bg-[#162A41] text-white font-semibold"
                >
                  Opret bruger
-            </button>
+              </button>
             </form>
             </div>
         </div>

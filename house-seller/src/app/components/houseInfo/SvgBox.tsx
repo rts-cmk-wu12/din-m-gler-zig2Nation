@@ -2,63 +2,66 @@ import { PiImageSquareThin } from "react-icons/pi";
 import { IoLayersOutline } from "react-icons/io5";
 import { PiMapPinThin } from "react-icons/pi";
 import { BsHeart } from "react-icons/bs";
-import { IoIosArrowBack } from "react-icons/io";
-import { IoIosArrowForward } from "react-icons/io";
-
-import React, { useState } from "react";
+import MapPosition from "./MapPosition";
+import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
-export default function SvgBox({
-  images,
-  floorplan,
-}: {
-  images: { url: string; name: string }[];
-  floorplan: { url: string; name: string };
-}) {
-  const [showImages, setShowImages] = useState(false); // Tilstand for visning af billeder
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [viewingFloorplan, setViewingFloorplan] = useState(false); // Tilstand for visning af gulvplan
+interface SvgBoxProps {
+  images: { url: string; name: string }[]; // Images now require a url and name
+  floorplan: { url: string; name: string }; // Floorplan also requires a url and name
+  coordinates?: {
+    lat: number;
+    lng: number;
+  };
+}
 
-  if (!images || images.length === 0 || !floorplan) {
-    return <div>Ingen billeder tilgængelige</div>;
-  }
+export default function SvgBox({ images, floorplan, coordinates }: SvgBoxProps) {
+  const [showImages, setShowImages] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [viewingFloorplan, setViewingFloorplan] = useState(false);
+  const [mapPosition, setMapPosition] = useState(false);
 
   const handleToggleImages = () => {
-    setViewingFloorplan(false); // Skift til visning af husbilleder
-    setShowImages(!showImages);
-    setCurrentImageIndex(0); // Start fra første billede
+    if (viewingFloorplan) {
+      setViewingFloorplan(false); // Gå tilbage til almindelige billeder
+    }
+    setMapPosition(false); // Luk kortmodal
+    setShowImages((prevShowImages) => !prevShowImages); // Toggle visning uden at nulstille indekset
   };
+  
+  
+  
 
   const handleToggleFloorplan = () => {
-    setViewingFloorplan(true); // Skift til visning af gulvplanbillede
-    setShowImages(true);
+    setViewingFloorplan(true);
+    setMapPosition(false);
+    setShowImages(true); // Ensurer billederne vises
+  };
+  
+  const handleToggleMapPosition = () => {
+    setViewingFloorplan(false);
+    setShowImages(false); // Luk billedmodalen
+    setMapPosition(!mapPosition);
+  };
+  
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prevIndex) => Math.max(prevIndex - 1, 0));
   };
 
   const handleNextImage = () => {
-    if (!viewingFloorplan && currentImageIndex < images.length - 1) {
-      setCurrentImageIndex(currentImageIndex + 1);
-    }
+    setCurrentImageIndex((prevIndex) => Math.min(prevIndex + 1, images.length - 1));
   };
 
-  const handlePrevImage = () => {
-    if (!viewingFloorplan && currentImageIndex > 0) {
-      setCurrentImageIndex(currentImageIndex - 1);
-    }
-  };
-
-  const handleCloseInformation = (event: React.MouseEvent) => {
-    if (event.target === event.currentTarget) {
+  const handleCloseImageModal = (event: React.MouseEvent) => {
+    if (event.currentTarget === event.target) {
       setShowImages(false);
     }
   };
 
-  const currentImage = viewingFloorplan
-    ? floorplan // Hvis vi ser gulvplanen, brug gulvplanbilledet
-    : images[currentImageIndex]; // Ellers brug det aktuelle husbillede
-
   return (
     <div className="flex flex-col gap-5">
-      {/* SVG-ikoner */}
       <div className="flex flex-row gap-5">
         <PiImageSquareThin
           className="h-8 w-8 text-[#7B7B7B] cursor-pointer"
@@ -68,52 +71,60 @@ export default function SvgBox({
           className="h-8 w-8 text-[#7B7B7B] cursor-pointer"
           onClick={handleToggleFloorplan}
         />
-        <PiMapPinThin className="h-8 w-8 text-[#7B7B7B]" />
+        <PiMapPinThin
+          className="h-8 w-8 text-[#7B7B7B] cursor-pointer"
+          onClick={handleToggleMapPosition}
+        />
         <BsHeart className="h-8 w-8 text-[#7B7B7B]" />
       </div>
 
+      {/* Kort Modal */}
+      {mapPosition && (
+        <div className="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center z-50">
+          <MapPosition position={coordinates} />
+        </div>
+      )}
+
       {/* Billeder */}
-      {showImages && (
+      {showImages && !mapPosition && (
         <div
-          className="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-70 flex flex-col items-center justify-center z-50"
-          onClick={handleCloseInformation}
+          className="fixed inset-0 bg-gray-900 bg-opacity-70 flex flex-col items-center justify-center z-50"
+          onClick={handleCloseImageModal}
         >
-          <div className="relative">
-            {!viewingFloorplan && (
-              <>
-                {/* Pil til venstre */}
-                <IoIosArrowBack
-                  className={`absolute left-5 top-1/2 transform -translate-y-1/2 text-white cursor-pointer h-[3em] w-[3em] ${
-                    currentImageIndex === 0 ? "opacity-50 pointer-events-none" : ""
-                  }`}
-                  onClick={handlePrevImage}
-                />
-                {/* Pil til højre */}
-                <IoIosArrowForward
-                  className={`absolute right-5 top-1/2 transform -translate-y-1/2 text-white cursor-pointer h-[3em] w-[3em] ${
-                    currentImageIndex === images.length - 1
-                      ? "opacity-50 pointer-events-none"
-                      : ""
-                  }`}
-                  onClick={handleNextImage}
-                />
-              </>
-            )}
-            {/* Billedet */}
-            <Image
-              src={currentImage.url}
-              alt={currentImage.name}
-              width={700}
-              height={700}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-lg select-none"
+          <IoIosArrowBack
+            className={`absolute left-4 top-1/2 transform -translate-y-1/2 cursor-pointer ${
+              currentImageIndex === 0 ? "text-gray-400" : "text-white"
+            }`}
+            onClick={handlePrevImage}
+          />
+          <Image
+            src={viewingFloorplan ? floorplan.url : images[currentImageIndex].url}
+            alt={viewingFloorplan ? floorplan.name : images[currentImageIndex].name}
+            width={viewingFloorplan ? 600 : 600} // Use current size or floorplan size
+            height={viewingFloorplan ? 600 : 600}
+            className="rounded-lg"
+          />
+          <IoIosArrowForward
+            className={`absolute right-4 top-1/2 transform -translate-y-1/2 cursor-pointer ${
+              currentImageIndex === images.length - 1 ? "text-gray-400" : "text-white"
+            }`}
+            onClick={handleNextImage}
+          />
+          <div className="flex flex-row gap-5 mt-4">
+            <PiImageSquareThin
+              className="h-8 w-8 text-white cursor-pointer"
+              onClick={handleToggleImages}
             />
+            <IoLayersOutline
+              className="h-8 w-8 text-white cursor-pointer"
+              onClick={handleToggleFloorplan}
+            />
+            <PiMapPinThin
+              className="h-8 w-8 text-white cursor-pointer"
+              onClick={handleToggleMapPosition}
+            />
+            <BsHeart className="h-8 w-8 text-white" />
           </div>
-            <div className="flex flex-row gap-7 mt-4">
-                <PiImageSquareThin className="h-8 w-8 text-white"/>
-                <IoLayersOutline className="h-8 w-8 text-white"/>
-                <PiMapPinThin className="h-8 w-8 text-white" />
-                <BsHeart className="h-8 w-8 text-white" />
-            </div>
         </div>
       )}
     </div>

@@ -1,10 +1,10 @@
-import AllAgents from "@/app/components/AllAgents"
-import AgentsArticle from "../components/AgentsArticle"
+import WorkersInRoskilde from "../components/WorkersInRoskilde/WorkersInRoskilde"
+import AllBrokers from "../components/AllBrokers/AllBrokers"
 export default function Agents() {
     return(
         <div>
-            <AllAgents/>
-            <AgentsArticle/>
+            <WorkersInRoskilde/>
+            <AllBrokers/>
         </div>
     )
 }

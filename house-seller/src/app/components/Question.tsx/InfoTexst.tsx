@@ -1,6 +1,6 @@
 export default function InfoTexst() {
     return(
-        <section className="flex flex-col items-start">
+        <section className="flex flex-col items-start w-[60em]">
                 <div className="flex flex-row gap-2">
                     <p className="underline underline-offset-8 text-2xl text-[#2A2C30] font-semibold">Vi sidder</p>
                     <h2 className="text-2xl text-[#2A2C30] font-semibold">klar til at besvare dine spørgsmål</h2>

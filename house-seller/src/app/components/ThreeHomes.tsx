@@ -19,7 +19,7 @@ interface Home {
   
 }
 
-export default function SelectedHomes() {
+export default function ThreeHomes() {
   const [homes, setHomes] = useState<Home[]>([]);
 
   useEffect(() => {
@@ -80,7 +80,7 @@ export default function SelectedHomes() {
             {/* Billede for boligen */}
             <img
               src={home.images[0]?.url} // Hent første billede fra images-arrayet
-              alt={home.title}
+              alt='billed af de forskellige boliger'
               className="w-full h-48 object-cover mb-4 rounded"
             />
             {/* Bolig titel, sted og pris */}
@@ -120,13 +120,15 @@ export default function SelectedHomes() {
           </article>
         ))}
       </div>
-
-      <Link
-        href="/houses"
-        className="mt-20 px-4 py-2 bg-[#162A41] text-white rounded w-[13em] h-14 flex items-center justify-center"
-      >
-        Se alle boliger
-      </Link>
+      <button>
+        <Link
+          href="/houses"
+          aria-label="se alle boliger"
+          className="mt-20 px-4 py-2 bg-[#162A41] text-white rounded w-[13em] h-14 flex items-center justify-center"
+        >
+          Se alle boliger
+        </Link>
+      </button>
 
 
     </section>

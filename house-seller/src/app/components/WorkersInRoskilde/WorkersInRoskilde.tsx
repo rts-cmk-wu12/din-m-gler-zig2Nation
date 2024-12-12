@@ -1,5 +1,5 @@
 import Image from "next/image"
-export default function AllAgents() {
+export default function WorkersInRoskilde() {
     return(
         <div className="relative h-[10em]">
         {/* Baggrundsbillede med mørk overlay */}
