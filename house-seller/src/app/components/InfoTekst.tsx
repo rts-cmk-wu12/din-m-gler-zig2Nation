@@ -3,7 +3,6 @@ import Image from "next/image"
 export default function InfoTekst() {
     return (
         <section className="flex flex-col items-center justify-center w-full px-8 mt-[6em]">
-            {/* Første linje */}
             <div className="flex flex-row gap-8 max-w-3xl w-full justify-center">
                 <div className="flex flex-row items-start gap-4">
                     <div className="w-[7em] h-[2em] bg-[#EEF7FF] flex items-center justify-center">

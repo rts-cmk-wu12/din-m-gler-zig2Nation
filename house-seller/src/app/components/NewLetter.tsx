@@ -2,14 +2,14 @@ import Image from "next/image";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { useState } from "react";
 
-export default function Letter() {
+export default function NewsLetter() {
     const [email, setEmail] = useState<string>("");
     const [message, setMessage] = useState<string | null>(null);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
 
-        // Simpel regex e-mail-validering
+
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             setMessage("Indtast en gyldig e-mail-adresse.");
@@ -27,7 +27,7 @@ export default function Letter() {
 
             if (response.ok) {
                 setMessage("Du er nu tilmeldt nyhedsbrevet!");
-                setEmail(""); // Ryd inputfeltet
+                setEmail("");
             } else {
                 setMessage("Noget gik galt. Prøv igen.");
             }

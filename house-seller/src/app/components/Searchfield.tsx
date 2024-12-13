@@ -4,17 +4,17 @@ export default function Searchfield() {
     return (
         <>
             <section className="relative w-full h-screen flex items-center justify-center bg-gray-100">
-                {/* Background Image */}
+
                 <Image
                     src="/hus-baggrund.jpg"
                     alt="baggrund på søgefelt af et hus"
                     layout="fill"
-                    objectFit="cover" // Changed to cover for better scaling
+                    objectFit="cover" 
                 />
-                {/* Dark Overlay */}
+
                 <div className="absolute inset-0 bg-black opacity-50 z-0"></div>
                 
-                {/* Content */}
+
                 <div className="relative z-10 bg-opacity-80 p-8 shadow-lg flex flex-col items-center text-center">
                     <h1 className="text-4xl font-bold mb-4 text-white">Søg efter din drømmebolig</h1>
                     <div className="w-[50em] h-[10em]">
@@ -35,7 +35,7 @@ export default function Searchfield() {
                                         className="w-full p-2 rounded border border-gray-300 focus:outline-none focus:ring-2 focus:ring-green-500"
                                     />
                                     <button
-                                        className="bg-[#162A41] text-white w-[20%]"
+                                        className="bg-[#162A41] text-white w-[20%] h-[2.5em]"
                                         aria-label="Søg på fx. glaskeramisk komfur, bryggers, kælder eller lignende"
                                     >
                                         Søg

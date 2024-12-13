@@ -16,7 +16,7 @@ export default function HeaderLogin({ isLoggedIn }: HeaderLoginProps) {
         "dm_userid=; path=/; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
         
         // Reload siden for at opdatere login-status
-        window.location.reload(); // Opdaterer komponenten med nye cookies
+        window.location.reload();
     }
 
     return (

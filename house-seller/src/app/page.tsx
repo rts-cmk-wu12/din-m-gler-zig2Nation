@@ -1,8 +1,8 @@
 'use client'
 import Searchfield from "./components/Searchfield";
 import DanskernesHjem from "./components/DanskernesHjem";
-import ThreeHomes from "./components/ThreeHomes";
-import NewsLetter from "./components/Letter";
+import FourHomes from "./components/FourHomes";
+import NewsLetter from "./components/NewLetter";
 import ThreeEmployee from "./components/ThreeEmployee";
 import Opdates from "./components/Opdates";
 
@@ -13,7 +13,7 @@ export default function Home() {
         <>
           <Searchfield />
           <DanskernesHjem />
-          <ThreeHomes />
+          <FourHomes />
           <NewsLetter/>
           <ThreeEmployee/>
           <Opdates/>

@@ -16,7 +16,7 @@ interface HouseDetailsPageProps {
 
 
 export default function AllDetails({ id }: { id: string }) {
-  const [houseData, setHouseData] = useState<House | null>(null); // Typen House
+  const [houseData, setHouseData] = useState<House | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {

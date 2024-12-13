@@ -8,12 +8,9 @@ import React, { useState, useEffect } from "react";
 import Image from "next/image";
 
 interface SvgBoxProps {
-  images: { url: string; name: string }[]; // Images now require a url and name
-  floorplan: { url: string; name: string }; // Floorplan also requires a url and name
-  coordinates?: {
-    lat: number;
-    lng: number;
-  };
+  images: { url: string; alt?: string }[];
+  floorplan: { url: string; name: string };
+  coordinates?: { lat: number; lng: number } | undefined; // Tilføj | undefined
 }
 
 export default function SvgBox({ images, floorplan, coordinates }: SvgBoxProps) {
@@ -24,10 +21,10 @@ export default function SvgBox({ images, floorplan, coordinates }: SvgBoxProps) 
 
   const handleToggleImages = () => {
     if (viewingFloorplan) {
-      setViewingFloorplan(false); // Gå tilbage til almindelige billeder
+      setViewingFloorplan(false);
     }
-    setMapPosition(false); // Luk kortmodal
-    setShowImages((prevShowImages) => !prevShowImages); // Toggle visning uden at nulstille indekset
+    setMapPosition(false); 
+    setShowImages((prevShowImages) => !prevShowImages);
   };
   
   
@@ -36,12 +33,12 @@ export default function SvgBox({ images, floorplan, coordinates }: SvgBoxProps) 
   const handleToggleFloorplan = () => {
     setViewingFloorplan(true);
     setMapPosition(false);
-    setShowImages(true); // Ensurer billederne vises
+    setShowImages(true); 
   };
   
   const handleToggleMapPosition = () => {
     setViewingFloorplan(false);
-    setShowImages(false); // Luk billedmodalen
+    setShowImages(false);
     setMapPosition(!mapPosition);
   };
   
@@ -78,14 +75,14 @@ export default function SvgBox({ images, floorplan, coordinates }: SvgBoxProps) 
         <BsHeart className="h-8 w-8 text-[#7B7B7B]" />
       </div>
 
-      {/* Kort Modal */}
+      
       {mapPosition && (
         <div className="fixed inset-0 bg-gray-900 bg-opacity-70 flex items-center justify-center z-50">
           <MapPosition position={coordinates} />
         </div>
       )}
 
-      {/* Billeder */}
+      
       {showImages && !mapPosition && (
         <div
           className="fixed inset-0 bg-gray-900 bg-opacity-70 flex flex-col items-center justify-center z-50"
@@ -99,8 +96,8 @@ export default function SvgBox({ images, floorplan, coordinates }: SvgBoxProps) 
           />
           <Image
             src={viewingFloorplan ? floorplan.url : images[currentImageIndex].url}
-            alt={viewingFloorplan ? floorplan.name : images[currentImageIndex].name}
-            width={viewingFloorplan ? 600 : 600} // Use current size or floorplan size
+            alt={viewingFloorplan ? floorplan.name : images[currentImageIndex].alt || 'Unknown'}
+            width={viewingFloorplan ? 600 : 600}
             height={viewingFloorplan ? 600 : 600}
             className="rounded-lg"
           />

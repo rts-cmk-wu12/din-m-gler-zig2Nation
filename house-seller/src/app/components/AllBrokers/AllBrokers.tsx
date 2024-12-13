@@ -12,13 +12,12 @@ interface EmployeeData {
 
 export default function AllBrokers() {
     const [employees, setEmployees] = useState<EmployeeData[]>([]);
-    const [loading, setLoading] = useState(true); // Start med loading som true
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
 
     useEffect(() => {
         const fetchThreeEmployees = async () => {
             try {
-                // Set loading to true before making the request
                 const response = await fetch("https://dinmaegler.onrender.com/agents", {
                     method: "GET",
                 });
@@ -30,20 +29,20 @@ export default function AllBrokers() {
                 const data = await response.json();
                 console.log("Fetched data from API:", data);
                 setEmployees(data);
-                setLoading(false); // Set loading to false when data is fetched
+                setLoading(false);
             } catch (error: any) {
-                setError(error.message); // Handle error
-                setLoading(false); // Stop loading in case of an error
+                setError(error.message);
+                setLoading(false);
             }
         };
 
         fetchThreeEmployees(); // Call the function to fetch data
-    }, []); // Empty dependency array to run once on mount
+    }, []);
 
     return (
-        <section className="flex flex-col items-center justify-center mt-32">
-            {loading && <p>Loading...</p>} {/* Show loading message while fetching */}
-            {error && <p className="text-red-500">Error: {error}</p>} {/* Show error message if there's an error */}
+        <section className="flex flex-col items-center justify-center mt-32 mb-20">
+            {loading && <p>Loading...</p>} 
+            {error && <p className="text-red-500">Error: {error}</p>}
 
             <article className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-[5em]">
                 {employees.map((employee) => (

@@ -5,7 +5,6 @@ export default function Navigation() {
     return (
         <nav className="w-full bg-white shadow-md">
             <div className="w-[60em] flex justify-between items-center h-[5em] mx-auto">
-                {/* Logo */}
                 <Link href={'/'}>
                 <Image
                     src="/maegler-logo.png"
@@ -14,7 +13,6 @@ export default function Navigation() {
                     height={40}
                 />
                 </Link>
-                {/* Links */}
                 <ul className="flex gap-8 text-sm font-medium">
                     <li className="cursor-pointer hover:text-blue-500">
                         <Link href='/houses'>Boliger til salg</Link>
@@ -25,9 +23,11 @@ export default function Navigation() {
                     <li className="cursor-pointer hover:text-blue-500">
                         <Link href='/MineFavorites'>Mine favoritter</Link>
                     </li>
+                    
                     <li className="cursor-pointer hover:text-blue-500">
                         <Link href='/ContactUs'>Kontakt os</Link>
                     </li>
+                    
                 </ul>
             </div>
         </nav>

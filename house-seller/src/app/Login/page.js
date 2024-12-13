@@ -19,7 +19,7 @@ export default function Page() {
 	return (
 		<>
 			<div className="relative w-full h-[10em]">
-			  {/* Baggrundsbillede med mørk overlay */}
+
 			  <Image
 			    src="/Mask-Group.png"
 			    alt="account login baggrundsbillede af et hus"
@@ -28,7 +28,7 @@ export default function Page() {
 			    className="w-full h-full object-cover"
 			  />
 			  <div className="absolute top-0 left-0 w-full h-full bg-black opacity-70"></div>
-			  {/* Tekst, der vises oven på billedet */}
+
 			  <article className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center text-white z-10">
 			    <h2 className="text-2xl font-bold">Log ind</h2>
 			    <div className="flex flex-row justify-center gap-4 mt-2">

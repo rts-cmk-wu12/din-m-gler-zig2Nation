@@ -1,5 +1,5 @@
-import Image from 'next/image'; // Importer Next.js Image-komponent
-import { Agent } from "@/app/HouseTypes"; // Importer Agent-typen
+import Image from 'next/image';
+import { Agent } from "@/app/HouseTypes";
 import { FaPaperPlane } from "react-icons/fa";
 import { FaPhoneAlt } from "react-icons/fa";
 
@@ -23,8 +23,8 @@ export default function Description({ description, agent }: DescriptionProps) {
                 <Image
                   src={agent.image.url}
                   alt={`Billede af ${agent.name}`}
-                  width={500} // Angiv passende bredde
-                  height={500} // Angiv passende højde
+                  width={500} 
+                  height={500}
                   className='h-[15em] object-cover'
                 />
             </div>

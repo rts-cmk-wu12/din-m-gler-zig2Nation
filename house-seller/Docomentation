@@ -1,3 +1,7 @@
+* Login
+    Email: lasses@
+    kodeord: 123456
+
 * Mine valg af tech-stack
  -Next.js
     Jeg har valgt at bruge Next.js som mit framework, da det er et React-baseret framework, der tilbyder moderne funktioner som:
@@ -74,6 +78,131 @@
 
 
 
+
+* dette er min valgte kode på og få min mæglere ind så man kan se dem alle
+
+i denne del af mit project bruger jeg 'use client' fordig det er client side.
+jeg bruger interface for og give min variabler typer som 'number og sting'
+jeg sætter de 3 her jeg bruger som en useState det det er noget der sakl ændre sig.
+
+den første const laver et array som mine employees skal ligge i
+nummer 2 er bare en loading skærm der kommer frem inden jeg får noget fra apiet den er true fordi det tar lidt tid og hente fra apiet
+nummer 3 den sætter en error hvis der går noget galt som hvis jeg slet ikke får noget simder den en error isteedet for der bare står loading
+    const [employees, setEmployees] = useState<EmployeeData[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+
+jeg bruger useEffect til og fetche fra min api med det api kald
+da useEffect kan køre asyncron så den venndt til den får noget fra fetchet
+vi bruger methode: "GET" fordi det noget jeg skal have
+
+så har jeg en if denne her
+
+if (!response.ok) {
+                    throw new Error("Error fetching 3 employees");
+                }
+den siger hvis IKKE response er ok så smid en ny error og det gør den hvis vi ikke får noget og der kommer en fejl, ellers køre kaldet videre
+
+den køre videre ned til det næste (jeg consol.log for og se om jeg får nogert fra mit api)
+const data = await response.json();
+                console.log("Fetched data from API:", data);
+                setEmployees(data);
+                setLoading(false);
+            } catch (error: any) {
+                setError(error.message);
+                setLoading(false);
+
+min setEmloyees(data) er det som indholder det jeg får fra apiet som skal bruges
+og nu er setLoading(false) fordi jeg har fået noget fra apit så nu skal der ikke stå loading mere
+
+min catch griber ind hvis der sker noget helt uventet så sætter den også setLoading til false
+
+
+til slut kalder vi på funktionen
+fetchThreeEmployees() får og få data
+
+jeg har et dependcy array som gør den køre hver gang der sker noget nyt på siden
+
+så indsætter jeg de forskellige ting ind i mit jsx for det bliver vist
+
+som denner her det er beskeden loadding {loading && <p>Loading...</p>} 
+
+
+'use client'
+import { useEffect, useState } from "react";
+import { IoIosMail } from "react-icons/io";
+import Link from "next/link";
+
+interface EmployeeData {
+    id: string | number;
+    name: string;
+    title: string;
+    image: { url: string };
+}
+
+export default function AllBrokers() {
+    const [employees, setEmployees] = useState<EmployeeData[]>([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState<string | null>(null);
+
+    useEffect(() => {
+        const fetchThreeEmployees = async () => {
+            try {
+                const response = await fetch("https://dinmaegler.onrender.com/agents", {
+                    method: "GET",
+                });
+
+                if (!response.ok) {
+                    throw new Error("Error fetching 3 employees");
+                }
+
+                const data = await response.json();
+                console.log("Fetched data from API:", data);
+                setEmployees(data);
+                setLoading(false);
+            } catch (error: any) {
+                setError(error.message);
+                setLoading(false);
+            }
+        };
+
+        fetchThreeEmployees(); // Call the function to fetch data
+    }, []);
+
+    return (
+        <section className="flex flex-col items-center justify-center mt-32 mb-20">
+            {loading && <p>Loading...</p>} 
+            {error && <p className="text-red-500">Error: {error}</p>}
+
+            <article className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-[5em]">
+                {employees.map((employee) => (
+                    <div
+                        key={employee.id}
+                        className="flex flex-col items-center bg-gray-100 rounded shadow-md w-[19em] gap-2 mt-"
+                    >
+                        <img
+                            src={employee.image.url}
+                            alt={employee.name}
+                            className="w-full h-[17em] object-cover mb-4"
+                        />
+                        <Link href={`/ContactAnEmployee/${employee.id}`}>
+                            <h3 className="text-xl font-bold hover:underline underline-offset-4 cursor-pointer">{employee.name}</h3>
+                        </Link>
+                        <p className="text-[#7B7B7B]">{employee.title}</p>
+                        <div className="flex flex-row items-center gap-2 mb-3">
+                            <IoIosMail />
+                            <p className="font-bold">in</p>
+                        </div>
+                    </div>
+                ))}
+            </article>
+        </section>
+    );
+}
+
+
+
 * Diverse sider jeg har brugt igennem min opgave
 
     -Links
@@ -94,3 +223,15 @@
     https://www.w3schools.com/typescript/typescript_aliases_and_interfaces.php
 
     jeg har også brugt nogle ting fra min tidligere opgaver jeg har lavet
+
+
+
+
+
+    * ændringer iforhold tli figma design
+    jeg har lavet hover efekt med undeline under de fleste links jeg har
+    jeg har undladet og lave den footer der er på HOV! siden da jeg ikke mener det ikke følger designet
+    jag har undladet og have 2 scroll enheder på min price range
+
+    * Ting jeg gerne ville have gjort bedere og ting jeg er tilfredsse med
+    jeg ville gerne have noget det hele men da der var nogle ting der to tid trak det ud, så jeg sad fast i for lang tid de samme steder. Alt i alt syndes jeg at mit endlige projekt er okay selfølgelig mangler der lidt.

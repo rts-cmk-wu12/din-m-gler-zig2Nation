@@ -25,7 +25,7 @@ export default function ContactForm() {
           </li>
           <li className="flex flex-col items-start">
             <div className="flex flex-row items-center gap-2">
-              <Image src="/locationdot.svg" alt="locations prik" width={50} height={50} />
+              <Image src="/locationdot.svg" alt="locations prik for butik" width={50} height={50} />
               <div className="flex flex-col justify-start">
                 <p className="text-start text-[#7B7B7B] text-[0.7em]">Butik</p>
                 <span className="text-gray-800">Stændertorvet 78, 4000 Roskilde</span>

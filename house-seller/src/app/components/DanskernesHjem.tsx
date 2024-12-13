@@ -6,7 +6,6 @@ export default function DanskernesHjem() {
     return (
         <>
             <section className="flex flex-col items-center justify-center w-full h-[70em] bg-[white]">
-                {/* Øverste indhold */}
                 <div className="flex flex-row items-center justify-between max-w-5xl w-full px-8 border-b border-gray-300 mx-auto gap-[3em]">
                     <Image 
                         width={500}
@@ -35,7 +34,7 @@ export default function DanskernesHjem() {
                     </article>
                 </div>
 
-                {/* InfoTekst sektion */}
+
                 <InfoTekst />
             </section>
         </>

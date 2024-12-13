@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 import { IoMdArrowDropdown } from "react-icons/io";
 import { FaHeart } from "react-icons/fa6";
 import { useEffect, useState } from "react";
@@ -180,11 +181,13 @@ export default function Search() {
               >
                 <article>
                   <div className="relative">
-                    <img
-                      src={home.images[0]?.url} // Hent første billede fra images-arrayet
-                      alt={home.title}
+                  <Image
+                      src={home.images[0]?.url}
+                      alt={home.title || 'hus har ingen billeder'}
+                      width={500} // Specificér bredde
+                      height={200} // Specificér højde
                       className="w-full h-48 object-cover mb-4 rounded"
-
+                      priority={false} // Sørg for, at billeder ikke har høj prioritet
                     />
                     <div
                       className="absolute top-3 right-3 bg-white rounded-full p-2 cursor-pointer"

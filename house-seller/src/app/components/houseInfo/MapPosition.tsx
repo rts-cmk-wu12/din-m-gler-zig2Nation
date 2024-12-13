@@ -1,22 +1,25 @@
 import { useState, useEffect } from 'react';
- 
-export default function MapPosition({ position }) {
+
+interface MapPositionProps {
+  position?: { lat: number; lng: number } | undefined; // coordinates kan være undefined
+}
+
+export default function MapPosition({ position }: MapPositionProps) {
   const [loading, setLoading] = useState(true);
-  
-  const [latitude, longitude] = Array.isArray(position) && position.length === 2
-  ? position
-  : [55.676098, 12.568337];
- 
+
+  const [latitude, longitude] = position && position.lat !== undefined && position.lng !== undefined
+    ? [position.lat, position.lng]
+    : [55.676098, 12.568337]; // default position, København
+
   const googleMapsUrl = `https://www.google.com/maps?q=${latitude},${longitude}&hl=da&z=14&output=embed`;
- 
-  // Simulerer en loading-state i 1 sekund (kan tilpasses)
+
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
     }, 1000);
     return () => clearTimeout(timer);
   }, []);
- 
+
   return (
     <div className="relative w-full h-full">
       {loading && (
@@ -36,4 +39,4 @@ export default function MapPosition({ position }) {
       />
     </div>
   );
-};
+}

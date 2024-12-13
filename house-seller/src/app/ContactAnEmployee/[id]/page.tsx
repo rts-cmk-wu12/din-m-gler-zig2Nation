@@ -6,9 +6,9 @@ import SpecificSeller from "../../components/ContactUs/SpecificSeller";
 import SearchProperty from "../../components/ContactUs/SearchProperty";
 
 export default function ContactAnEmployee() {
-    const { id } = useParams(); // Hent agentId fra URL'en
+    const { id } = useParams();
 
-    // Sikr, at id er en string
+    
     const agentId = Array.isArray(id) ? id[0] : id || "";
 
     return (
@@ -18,7 +18,6 @@ export default function ContactAnEmployee() {
                 <div className="flex flex-row gap-9">
                     <div className="w-[35em] border border-[#D3DEE8] p-9">
                         <SpecificSeller />
-                        {/* Send agentId som en prop */}
                         <ContactFormEmployee agentId={agentId} />
                     </div>
                     <SearchProperty />

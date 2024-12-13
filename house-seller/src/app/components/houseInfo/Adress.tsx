@@ -1,4 +1,4 @@
-// components/house-information/Adress.tsx
+
 export default function Adress({ adress1, postalcode, city }: { adress1: string | number, postalcode: number, city: string }) {
     return (
       <div>

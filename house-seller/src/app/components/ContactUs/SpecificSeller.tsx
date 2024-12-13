@@ -14,13 +14,13 @@ interface Agent {
 }
 
 export default function SpecificSeller() {
-  const params = useParams(); // Hent ruteparametrene
-  const { id } = params as { id: string }; // Extract 'id' fra params
+  const params = useParams();
+  const { id } = params as { id: string }; 
   const [agent, setAgent] = useState<Agent | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return; // Vent på, at id bliver tilgængeligt
+    if (!id) return;
 
     fetch(`https://dinmaegler.onrender.com/agents/${id}`, {
       method: "GET",

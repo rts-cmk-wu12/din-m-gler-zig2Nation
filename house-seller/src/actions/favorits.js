@@ -1,28 +1,69 @@
-import fetch from 'node-fetch';
-
-async function updateUser() {
+// app/actions/favorites.js
+"use server";
+ 
+import { cookies } from "next/headers";
+ 
+export async function toggleFavorite(propertyId) {
+  const cookieStore = await cookies();
+  const token = await cookieStore.get("dm_token");
+  const userId = await cookieStore.get("dm_userid");
+ 
+  if (!token || !userId) {
+    console.log("Ikke autentificeret");
+    return { success: false, error: "Not authenticated" };
+  }
+ 
   try {
-    const response = await fetch("https://dinmaegler.onrender.com/users/6163ff832616683c883b049f", {
-      method: "PUT",
+    // First, get current favorites
+    const response = await fetch("https://dinmaegler.onrender.com/users/me", {
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYxNjNmZjgzMjYxNjY4M2M4ODNiMDQ5ZiIsImlhdCI6MTYzNTg0NDM2MywiZXhwIjoxNjM4NDM2MzYzfQ.w1VIG08a8IeHgLIEfgToxHIaJiA8tl2txjeQWq8H_gE"
+        Authorization: `Bearer ${token.value}`,
       },
-      body: JSON.stringify({
-        homes: ["61572ad4251a8a42ec8cb544"]
-      }),
     });
-
+ 
     if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`);
+      throw new Error("Failed to fetch current favorites");
     }
-
-    const data = await response.json();
-    console.log('Fetched data:', data); // Log data fra API-svaret
-
+ 
+    const userData = await response.json();
+    const currentFavorites = userData.homes || [];
+    console.log("Nuværende favoritter:", currentFavorites);
+ 
+    // Toggle the property in favorites
+    let newFavorites;
+    if (currentFavorites.includes(propertyId)) {
+      newFavorites = currentFavorites.filter((id) => id !== propertyId);
+    } else {
+      newFavorites = [...currentFavorites, propertyId];
+    }
+    console.log("Opdaterede favoritter:", newFavorites);
+ 
+    // Update favorites
+    const updateResponse = await fetch(
+      `https://dinmaegler.onrender.com/users/${userId.value}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token.value}`,
+        },
+        body: JSON.stringify({
+          homes: newFavorites,
+        }),
+      }
+    );
+ 
+    if (!updateResponse.ok) {
+      throw new Error("Failed to update favorites");
+    }
+ 
+    return {
+      success: true,
+      isFavorite: !currentFavorites.includes(propertyId),
+      favorites: newFavorites,
+    };
   } catch (error) {
-    console.error('Error:', error); // Log fejl her
+    console.error("Fejl i toggleFavorite:", error);
+    return { success: false, error: error.message };
   }
 }
-
-updateUser();

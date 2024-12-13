@@ -12,7 +12,7 @@ interface Agent {
 }
 
 interface ContactFormEmployeeProps {
-    agentId: string; // Agentens id for at finde den korrekte agent
+    agentId: string;
 }
 
 export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProps) {
@@ -90,7 +90,7 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
         if (validateForm()) {
             console.log("Formularen er gyldig, sender data:", formData);
     
-            // Tøm formularen
+            
             setFormData({
                 name: "",
                 email: "",
@@ -98,9 +98,9 @@ export default function ContactFormEmployee({ agentId }: ContactFormEmployeeProp
                 message: "",
             });
     
-            // Vis en succesbesked
+            
             setSubmissionMessage("Din besked er nu sendt!");
-            setTimeout(() => setSubmissionMessage(null), 5000); // Fjern beskeden efter 5 sekunder
+            setTimeout(() => setSubmissionMessage(null), 5000);
         } else {
             console.log("Formularen er ugyldig, tjek fejl.");
         }

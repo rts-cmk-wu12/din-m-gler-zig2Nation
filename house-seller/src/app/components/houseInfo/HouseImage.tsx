@@ -6,8 +6,8 @@ interface HouseImageProps {
 }
 
 export default function HouseImage({ house }: HouseImageProps) {
-  // Tjek om huset har billeder, og vis kun det første
-  const firstImage = house.images[0]; // Hent det første billede
+  
+  const firstImage = house.images[0];
 
   if (!firstImage) {
     return <div>Der er ingen billeder til dette hus.</div>; // Hvis der ikke er billeder
@@ -16,11 +16,11 @@ export default function HouseImage({ house }: HouseImageProps) {
   return (
     <div className="w-full h-[30em]">
         <Image
-          src={firstImage.url}  // URL'en til det første billede
-          alt={firstImage.alt || "Hus billede"}  // Hvis der ikke er alt-tekst, bruges en standard
-          width={1900}            // Billedets bredde
-          height={200}           // Billedets højde
-          className="h-[30em]"  // Flyt billedet op med 5% af containerens højde
+          src={firstImage.url} 
+          alt={firstImage.alt || "Hus billede"}
+          width={1900} 
+          height={200}
+          className="h-[30em]"
         />
     </div>
 
